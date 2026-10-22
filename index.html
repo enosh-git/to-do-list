@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do List</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body class="container">
+    <header>
+      <h1>To Do List</h1>
+    </header>
+
+    <!-- Main section -->
+     <main>
+      <h2>Add a task below</h2>
+
+      <!-- Input section -->
+      <div class="input-section">
+        <input type="text" id="inputText" placeholder="Input a task to do..">
+        <button type="button" id="inputButton">Submit</button>
+      </div>
+
+      <!-- Section for not started tasks -->
+      <section class="task-section not-started">
+        <h3>Not started</h3>
+        <ul id="notStartedList"></ul>
+      </section>
+
+      <!-- Section for pending tasks -->
+      <section class="task-section pending">
+        <h3>Pending</h3>
+        <ul id="pendingList"></ul>
+      </section>
+
+      <!-- Section for finished tasks -->
+      <section class="task-section finished">
+        <h3>Finished</h3>
+        <ul id="finishedList"></ul>
+      </section>
+     </main>
+
+     <script src="script.js"></script>
+  </body>
+</html>
