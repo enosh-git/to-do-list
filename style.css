@@ -114,3 +114,38 @@ h2 {
   transform: scale(0.97);
   box-shadow: none;
 }
+
+.task-section {
+  margin-bottom: 2rem;
+}
+
+ul {
+  padding-left: 0.5rem;
+}
+
+
+li {
+  list-style-type: none;
+  background-color: var(--card-bg);
+  padding: 0.7rem;
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+  
+  font-family: inherit;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li span {
+  font-size: 0.9rem;
+}
+
+select {
+  background-color: var(--buttons);
+  color: var(--bg);
+  padding: 0.3rem;
+  border-radius: 4px;
+}
