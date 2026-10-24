@@ -149,3 +149,28 @@ select {
   padding: 0.3rem;
   border-radius: 4px;
 }
+
+.finish-div {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: center;
+}
+
+#clearBtn {
+  width: 7rem;
+  height: 1.7rem;
+  border-radius: 6px;
+  border: none;
+  background-color: var(--buttons);
+  color: var(--bg);
+
+  font-size: 0.6rem;
+  font-family: inherit;
+  font-weight: 400;
+  transition: all 0.3s ease-in-out;
+}
+
+#clearBtn:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}

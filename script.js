@@ -3,12 +3,21 @@ const inputText = document.getElementById("inputText");
 const notStartedList = document.getElementById("notStartedList");
 const pendingList = document.getElementById("pendingList");
 const finishedList = document.getElementById("finishedList");
+const clearButton = document.getElementById("clearBtn");
 
 const statuses = [
   {value: "notStarted", label: "Not Started"},
   {value: "pending", label: "Pending"},
   {value: "finished", label: "Finished"}
 ];
+
+function clearTask() {
+  if(finishedList.children.length > 0) {
+    finishedList.innerHTML = "";
+  }
+
+  return
+}
 
 function createTask(text) {
   const li = document.createElement("li");
@@ -38,6 +47,21 @@ function createTask(text) {
   return li;
 }
 
+inputText.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    const inputValue = inputText.value.trim();
+
+    if(inputValue.length === 0){
+      return;
+    }
+
+    const task = createTask(inputValue);
+    notStartedList.append(task);
+    inputText.value = "";
+  }
+});
+
+
 button.addEventListener("click", function () {
   const inputValue = inputText.value.trim();
 
@@ -49,3 +73,5 @@ button.addEventListener("click", function () {
   notStartedList.append(task);
   inputText.value = "";
 });
+
+clearButton.addEventListener("click", clearTask);
