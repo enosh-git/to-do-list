@@ -5,27 +5,50 @@ const pendingList = document.getElementById("pendingList");
 const finishedList = document.getElementById("finishedList");
 const clearButton = document.getElementById("clearBtn");
 
+let tasks = [
+
+];
+
 const statuses = [
   {value: "notStarted", label: "Not Started"},
   {value: "pending", label: "Pending"},
   {value: "finished", label: "Finished"}
 ];
 
+function saveTasks(){
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  console.log(tasks);
+}
+
 function clearTask() {
   if(finishedList.children.length > 0) {
     finishedList.innerHTML = "";
   }
-
-  return
 }
 
-function createTask(text) {
+function inputTask(){
+  const inputValue = inputText.value.trim();
+  let taskHolder = {text: inputValue, status: "notStarted"};
+
+  if(inputValue.length === 0){
+    return;
+  }
+
+  const task = createTask(taskHolder);
+  notStartedList.append(task);
+  inputText.value = "";
+
+  tasks.push(taskHolder);
+  saveTasks();
+}
+
+function createTask(task) {
+  const select = document.createElement("select");
   const li = document.createElement("li");
 
   const span = document.createElement("span");
-  span.textContent = text;
+  span.textContent = task.text;
 
-  const select = document.createElement("select");
   for (const status of statuses) {
     const option = document.createElement("option");
     option.value = status.value;
@@ -41,6 +64,9 @@ function createTask(text) {
     } else if (select.value === "finished") {
       finishedList.append(li);
     }
+
+    task.status = select.value;
+    saveTasks();
   });
 
   li.append(span, select);
@@ -49,29 +75,13 @@ function createTask(text) {
 
 inputText.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
-    const inputValue = inputText.value.trim();
-
-    if(inputValue.length === 0){
-      return;
-    }
-
-    const task = createTask(inputValue);
-    notStartedList.append(task);
-    inputText.value = "";
+    inputTask();
   }
 });
 
 
 button.addEventListener("click", function () {
-  const inputValue = inputText.value.trim();
-
-  if(inputValue.length === 0){
-    return;
-  }
-
-  const task = createTask(inputValue);
-  notStartedList.append(task);
-  inputText.value = "";
+  inputTask();
 });
 
 clearButton.addEventListener("click", clearTask);
