@@ -15,6 +15,16 @@ const statuses = [
   {value: "finished", label: "Finished"}
 ];
 
+function loadTasks() {
+  if (localStorage.getItem("tasks") === null) {
+    return
+  } else {
+    tasks = JSON.parse(localStorage.getItem("tasks"));
+  }
+
+  console.log(tasks);
+}
+
 function saveTasks(){
   localStorage.setItem("tasks", JSON.stringify(tasks));
   console.log(tasks);
@@ -24,6 +34,18 @@ function clearTask() {
   if(finishedList.children.length > 0) {
     finishedList.innerHTML = "";
   }
+
+  tasks = tasks.filter(function (item) {
+    if(item.status !== "finished") {
+      return true;
+    }
+
+    return false;
+  });
+
+  saveTasks();
+
+
 }
 
 function inputTask(){
@@ -85,3 +107,5 @@ button.addEventListener("click", function () {
 });
 
 clearButton.addEventListener("click", clearTask);
+
+loadTasks();
