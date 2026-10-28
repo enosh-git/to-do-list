@@ -22,7 +22,18 @@ function loadTasks() {
     tasks = JSON.parse(localStorage.getItem("tasks"));
   }
 
-  console.log(tasks);
+  for(const task of tasks) {
+    let taskLoaded = createTask(task);
+
+    if(task.status === "notStarted") {
+      notStartedList.append(taskLoaded);
+    } else if(task.status === "pending") {
+      pendingList.append(taskLoaded);
+    } else if(task.status === "finished") {
+      finishedList.append(taskLoaded);
+    }
+  }
+
 }
 
 function saveTasks(){
@@ -44,8 +55,6 @@ function clearTask() {
   });
 
   saveTasks();
-
-
 }
 
 function inputTask(){
@@ -77,6 +86,8 @@ function createTask(task) {
     option.textContent = status.label;
     select.append(option);
   }
+
+  select.value = task.status;
 
   select.addEventListener("change", function() {
     if (select.value === "notStarted") {
